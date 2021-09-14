@@ -1,0 +1,49 @@
+# gcloud builds submit --config cloudbuild.yaml
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/vpn_image', '-f', './Dockerfile', '.' ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'push', 'gcr.io/$PROJECT_ID/vpn_image:latest' ]
+- name: 'gcr.io/cloud-builders/gcloud'
+  env: PROJECT_ID=$PROJECT_ID
+  args: ['beta',
+         'compute',
+         '--project=$PROJECT_ID',
+         'instances',
+         'create-with-container',
+         'vpn',
+         '--zone=asia-northeast1-a',
+         '--machine-type=e2-micro', 
+         '--subnet=default',
+         '--tags=vpn',
+         '--network-tier=PREMIUM',
+         '--metadata=google-logging-enabled=true',
+         '--maintenance-policy=MIGRATE',
+         '--scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append',
+         '--image=cos-stable-89-16108-470-16',
+         '--image-project=cos-cloud',
+         '--boot-disk-size=10GB',
+         '--boot-disk-type=pd-balanced',
+         '--boot-disk-device-name=vpn',
+         '--no-shielded-secure-boot',
+         '--shielded-vtpm',
+         '--shielded-integrity-monitoring',
+         '--container-image=gcr.io/${PROJECT_ID}/vpn_image',
+         '--container-restart-policy=always',
+         '--container-env-file=./vpn.env',
+         '--container-privileged',
+         '--labels=container-vm=cos-stable-89-16108-470-16']
+- name: 'gcr.io/cloud-builders/gcloud'
+  env: PROJECT_ID=$PROJECT_ID
+  args: ['compute',
+         '--project=${PROJECT_ID}',
+         'firewall-rules create',
+         'vpn',
+         '--direction=INGRESS',
+         '--priority=1000',
+         '--network=default',
+         '--action=ALLOW',
+         '--rules=udp:500,udp:4500',
+         '--source-ranges=0.0.0.0/0',
+         '--target-tags=vpn' ]
+images: [ 'gcr.io/$PROJECT_ID/vpn_image' ]
