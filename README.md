@@ -8,7 +8,8 @@ Enable following service on your project. Access to link that easily can it.
 * Cloud Build API
 * Cloud Storage API
 * Compute Engine API
-* Service Networking AP
+* Service Networking API
+
 🌐https://console.cloud.google.com/flows/enableapi?apiid=cloudbuild.googleapis.com%2Cstorage.googleapis.com%2Ccompute.googleapis.com%2Cservicenetworking.googleapis.com
 
 ### Install gcloud commands
@@ -31,7 +32,10 @@ VPN_PASSWORD=<任意>
 
 ### Put deploy command on terminal
 Put the command following text on terminal.
+
 `gcloud builds submit --config vpndeploy.yaml`
 
-### Access IP
+### Access IP with vpn
 Access to external ip. It has showed by terminal below the 'EXTERNAL_IP', If success of deployment.
+#### ![alt text](https://github.com/yaztak1227/deploy_vpn//blob/main/readme_01.png?raw=true)
+#### ![alt text](https://github.com/yaztak1227/deploy_vpn//blob/main/readme_02.png?raw=true)
