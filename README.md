@@ -14,7 +14,7 @@ Enable following service on your project. Access to link that easily can it.
 
 ### Enable service for Cloud Build Account
 https://cloud.google.com/build/docs/securing-builds/configure-access-for-cloud-build-service-account
-#### ![alt text](https://github.com/yaztak1227/deploy_vpn//blob/grant_service_account.png?raw=true)
+#### ![alt text](https://github.com/yaztak1227/deploy_vpn//blob/main/grant_service_account.png?raw=true)
 
 ### Install gcloud commands
 🌐https://cloud.google.com/sdk/gcloud
