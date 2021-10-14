@@ -12,6 +12,10 @@ Enable following service on your project. Access to link that easily can it.
 
 🌐https://console.cloud.google.com/flows/enableapi?apiid=cloudbuild.googleapis.com%2Cstorage.googleapis.com%2Ccompute.googleapis.com%2Cservicenetworking.googleapis.com
 
+### Enable service for Cloud Build Account
+https://cloud.google.com/build/docs/securing-builds/configure-access-for-cloud-build-service-account
+#### ![alt text](https://github.com/yaztak1227/deploy_vpn//blob/grant_service_account.png?raw=true)
+
 ### Install gcloud commands
 🌐https://cloud.google.com/sdk/gcloud
 
