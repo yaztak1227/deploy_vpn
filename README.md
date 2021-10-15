@@ -1,10 +1,11 @@
 # Deploy 'IPSEC over L2TP VPN Server' to VM instance
 
 Use docker image from https://hub.docker.com/r/hwdsl2/ipsec-vpn-server.
+Easily deploy and run 'IPSEC over L2TP VPN Server' on your projects by Google Cloud Build.
 
 ## Usage
 ### Enable APIs
-Enable following service on your project. Access to link that easily can it.
+Enable following service on your project. You can access to link that easily do it.
 * Cloud Build API
 * Cloud Storage API
 * Compute Engine API
@@ -38,6 +39,11 @@ VPN_PASSWORD=<任意>
 Put the command following text on terminal.
 
 `gcloud builds submit --config vpndeploy.yaml`
+
+### Put firewall edit command on terminal
+Put the command following text on terminal.
+
+`gcloud compute firewall-rules create vpn --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=udp:500,udp:4500 --source-ranges=0.0.0.0/0 --target-tags=vpn`
 
 ### Access IP with vpn
 Access to external ip. It has showed by terminal below the 'EXTERNAL_IP', If success of deployment.
