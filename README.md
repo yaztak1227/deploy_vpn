@@ -36,6 +36,11 @@ Put the command following text on terminal.
 
 `gcloud builds submit --config vpndeploy.yaml`
 
+### Put firewall edit command on terminal
+Put the command following text on terminal.
+
+`gcloud compute --project=nice-argon-329000 firewall-rules create vpn --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=udp:500,udp:4500 --source-ranges=0.0.0.0/0 --target-tags=vpn`
+
 ### Access IP with vpn
 Access to external ip. It has showed by terminal below the 'EXTERNAL_IP', If success of deployment.
 #### ![alt text](https://github.com/yaztak1227/deploy_vpn//blob/main/readme_01.png?raw=true)
