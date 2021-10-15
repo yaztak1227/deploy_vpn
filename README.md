@@ -39,7 +39,7 @@ Put the command following text on terminal.
 ### Put firewall edit command on terminal
 Put the command following text on terminal.
 
-`gcloud compute --project=nice-argon-329000 firewall-rules create vpn --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=udp:500,udp:4500 --source-ranges=0.0.0.0/0 --target-tags=vpn`
+`gcloud compute firewall-rules create vpn --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=udp:500,udp:4500 --source-ranges=0.0.0.0/0 --target-tags=vpn`
 
 ### Access IP with vpn
 Access to external ip. It has showed by terminal below the 'EXTERNAL_IP', If success of deployment.
