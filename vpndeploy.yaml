@@ -33,17 +33,4 @@ steps:
          '--container-env-file=./vpn.env',
          '--container-privileged',
          '--labels=container-vm=cos-stable-89-16108-470-16']
-- name: 'gcr.io/cloud-builders/gcloud'
-  env: PROJECT_ID=$PROJECT_ID
-  args: ['compute',
-         '--project=${PROJECT_ID}',
-         'firewall-rules create',
-         'vpn',
-         '--direction=INGRESS',
-         '--priority=1000',
-         '--network=default',
-         '--action=ALLOW',
-         '--rules=udp:500,udp:4500',
-         '--source-ranges=0.0.0.0/0',
-         '--target-tags=vpn' ]
 images: [ 'gcr.io/$PROJECT_ID/vpn_image' ]
